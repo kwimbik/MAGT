@@ -33,6 +33,15 @@ def best_response_value_column(matrix,column_strategy):
             br = brc
     return br
 
+def findDominatedStratefies(matrix,row_strategy,column_strategy):
+    return 0
+
+
+def dominateStrategiesReduction(matrix,row_strategy,column_strategy):
+    return 0
+
+
+
 row_value = evaluate(matrix=matrix, row_strategy=row_strategy, column_strategy=column_strategy)
 br_value_row = best_response_value_row(matrix, row_strategy)
 br_value_column = best_response_value_column(matrix,column_strategy)

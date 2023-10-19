@@ -17,5 +17,3 @@ def test_week1():
     br_value_column = week1.best_response_value_column(matrix=matrix, column_strategy=column_strategy)
     assert br_value_row == pytest.approx(-0.6)
     assert br_value_column == pytest.approx(-0.2)
-
-test_week1()
