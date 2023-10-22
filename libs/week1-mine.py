@@ -27,7 +27,7 @@ def best_response_value_column(matrix,column_strategy):
     for i in range(len(column_strategy)):
         brc = 0
         for j in range(len(column_strategy)):
-            brc += matrix[i,j] * column_strategy[j]
+            brc +=(matrix[i,j] * column_strategy[j])
             print(matrix[i,j],column_strategy[j])
         if brc > br:
             br = brc
