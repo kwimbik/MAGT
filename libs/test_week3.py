@@ -1,4 +1,4 @@
-import libs.week3 as week3
+import week3 as week3
 import numpy as np
 import pytest
 
@@ -10,5 +10,6 @@ def test_week3():
 
     delta_row, delta_column = week3.compute_deltas(matrix=matrix, row_strategy=row_strategy,
                                                    column_strategy=column_strategy)
+    print(delta_row, delta_column)
     assert delta_row == pytest.approx(0.12)
     assert delta_column == pytest.approx(0.68)
