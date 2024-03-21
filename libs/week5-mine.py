@@ -84,8 +84,6 @@ def regret_self_play(matrix_player_1,matrix_player_2, num_iterations):
         # Normalize regrets
         row_regret_normalized  = [float(i)/sum(row_regret) for i in row_regret]
         column_regret_normalized = [float(i)/sum(column_regret) for i in column_regret]
-        print("row_regret,normalized:", row_regret_normalized)
-        print("column_regret_normalized:", column_regret_normalized)
         
         # Compute row deviating vectors
         row_deviating_vector = np.dot(matrix_player_1,column_regret_normalized)
@@ -102,12 +100,10 @@ def regret_self_play(matrix_player_1,matrix_player_2, num_iterations):
             strategy = row_deviating_vector[i]
             dif = strategy - row_expected_utility
             row_regret_gain[i] = max(0, dif)
-        print("Row expected utility:", row_expected_utility)
-        print("row_regret_gain:", row_regret_gain)
             
         for i in range(len(column_deviating_vector)):
             strategy = column_deviating_vector[i]
-            dif = strategy - row_expected_utility
+            dif = strategy - column_expected_utility
             column_regret_gain[i] = max(0, dif)
 
         # Update regrets
@@ -117,8 +113,8 @@ def regret_self_play(matrix_player_1,matrix_player_2, num_iterations):
     return row_regret_normalized, column_regret_normalized
 
 # Run regret matching self-play
-matrix1 = np.array([[15, 2, -1], [-1, -4, 1], [1, -2, 2]])
-matrix2 = np.array([[1, 23, -1], [11, -4, 1], [5, -2, 2]])
-row_regret, column_regret = regret_self_play(matrix1,matrix2, 2)
+matrix1 = np.array([[0, -1, 2], [1, 0, -1], [-1, 1, 0]])
+matrix2 = np.array([[0, -1, 1], [1, 0, -1], [2, -1, 0]])
+row_regret, column_regret = regret_self_play(matrix1,matrix2, 5)
 print(row_regret)
 print(column_regret)
