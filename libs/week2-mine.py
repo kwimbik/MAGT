@@ -2,6 +2,26 @@ from typing import List, Optional
 from scipy.optimize import linprog
 import numpy as np
 import itertools
+import matplotlib.pyplot as plt
+import math
+
+
+
+def best_response(matrix, opponent_strategy):
+    # best response
+    utilities = matrix @ opponent_strategy
+    return utilities[np.argmin(utilities)]
+
+
+def best_response_matrix(matrix, step_size):
+    x = 0
+    values = []
+    while x <= 1:
+        strategy = np.array([x, 1-x])
+        values.append(best_response(matrix.T, strategy))
+        x += step_size
+    return values
+
 
 def verify_support_one_side(matrix: np.array, support_row: List, support_col: List) -> Optional[List]:
     lhs_eq  = []
@@ -103,3 +123,14 @@ matrix_p2 = np.array([[0, 1, -10], [0, -10, -10], [-10, -10, -10]])
 #result = find_equilibria(matrix_p1 = matrix_p1,matrix_p2 = matrix_p2, support_row=[0], support_col = [0])
 result = iterate_Equilibria_equilibria(matrix_p1,matrix_p2)
 print(result)
+
+
+
+matrix = np.array([[-1, 0, -0.8], [1, -1, -0.5]]) 
+step_size = 0.001
+result = best_response_matrix(matrix, step_size)
+points = int((1 / step_size))  + 1
+x_axis = list(range(1,points))
+
+plt.plot(x_axis, result, 'bo')
+plt.show()
